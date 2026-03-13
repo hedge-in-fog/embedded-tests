@@ -83,3 +83,27 @@ sudo apt install iperf3
 
 iperf3 -c 192.168.1.1 -R
 ```
+
+# `iperf3` test `WiFi`
+1) reboot board by reset button
+
+2) connect to board
+sudo apt install picocom
+sudo picocom -b 1500000 /dev/ttyUSB0
+
+3) Connect to LuCi In browser
+http://192.168.1.1/
+
+go to settings "Network-Wireless" and enable wifi
+disable physical lan cable
+
+4)test 
+
+# On board
+# server mode
+iperf3 -s
+
+# on host
+sudo apt install iperf3
+
+iperf3 -c 192.168.1.1 -R
