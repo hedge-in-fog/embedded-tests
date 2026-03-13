@@ -83,3 +83,45 @@ sudo apt install iperf3
 
 iperf3 -c 192.168.1.1 -R
 ```
+
+# `iperf3` test `WiFi`
+1) reboot board by reset button
+
+2) connect to board
+sudo apt install picocom
+sudo picocom -b 1500000 /dev/ttyUSB0
+
+3) connect wifi on host to "openwrt"
+
+4) Connect to LuCi In browser
+http://192.168.1.1/
+
+go to settings "Network-Wireless" and enable wifi
+disable physical lan cable
+
+
+
+5) check interface
+
+root@OpenWrt:~# ifconfig
+br-lan    Link encap:Ethernet  HWaddr 1A:3C:9D:A1:97:E6  
+          ...
+
+phy1-ap0  Link encap:Ethernet  HWaddr 0C:EF:15:5D:70:71  
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:61088 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:154499 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:4421247 (4.2 MiB)  TX bytes:232867462 (222.0 MiB)
+
+
+6) test wifi
+
+# On board
+# server mode
+iperf3 -s
+
+# on host
+sudo apt install iperf3
+
+iperf3 -c 192.168.1.1 -R
